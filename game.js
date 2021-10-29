@@ -7,10 +7,7 @@ let optionAl = document.getElementById('option');
 let finalScore = document.getElementById('finalScore');
 let displayScore = document.getElementById('score')
 let displayLevel = document.getElementById('levelNumber')
-
 let audio = new Audio("sound/Austronaut.mp3")
-
-
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
