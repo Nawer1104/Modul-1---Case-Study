@@ -195,13 +195,9 @@ function spawnEnemies() {
             displayLevel.innerHTML = levelNumber
         }
 
-
-
         let enemy = new Enemy(x, y, radius, color, velocity)
 
         enemies.push(enemy)
-
-
 
     }, 500)
 }
@@ -225,13 +221,6 @@ function animate() {
             particle.update()
         }
     })
-
-    // players.forEach((player, index) => {
-    //     keyDown()
-    //     // keyUp()
-    //     player.update()
-    // })
-
 
     projectiles.forEach((projectile, index) => {
         projectile.update()
@@ -309,7 +298,6 @@ function animate() {
             }
         })
     })
-
 }
 
 // Event handler:
