@@ -99,6 +99,8 @@ class Particle {
 
     update() {
         this.draw()
+        this.velocity.x *= 0.99
+        this.velocity.y *= 0.99
         this.x = this.x + this.velocity.x
         this.y = this.y + this.velocity.y
         this.alpha -= 0.01
@@ -199,7 +201,9 @@ function spawnEnemies() {
 
         enemies.push(enemy)
 
-    }, 800)
+
+
+    }, 500)
 }
 
 let animationID
@@ -277,8 +281,8 @@ function animate() {
                             Math.random() * 5,
                             enemy.color,
                             {
-                                x: (Math.random() - 0.5) * 3,
-                                y: (Math.random() + 0.5) * 3
+                                x: (Math.random() - 0.5) * (Math.random() * 15),
+                                y: (Math.random() - 0.5) * (Math.random() * 15)
                             }
                         )
                     )
@@ -325,9 +329,33 @@ addEventListener('click', (event) => {
         event.clientX - player.x
     )
 
-    let velocity = {
-        x: Math.cos(angle) * 10,
-        y: Math.sin(angle) * 10
+    let velocity
+    if (score < 10000) {
+        velocity = {
+            x: Math.cos(angle) * 10,
+            y: Math.sin(angle) * 10
+        }
+    } else if (score >= 10000 && score <= 20000) {
+        velocity = {
+            x: Math.cos(angle) * 15,
+            y: Math.sin(angle) * 15
+        }
+        levelNumber = 2;
+        displayLevel.innerHTML = levelNumber
+    } else if (score >= 20000 && score <= 50000 ) {
+        velocity = {
+            x: Math.cos(angle) * 20,
+            y: Math.sin(angle) * 20
+        }
+        levelNumber = 3;
+        displayLevel.innerHTML = levelNumber
+    } else if (score >= 50000 && score <= 100000 ) {
+        velocity = {
+            x: Math.cos(angle) * 25,
+            y: Math.sin(angle) * 25
+        }
+        levelNumber = 4;
+        displayLevel.innerHTML = levelNumber
     }
 
     projectiles.push(new Projectile(
