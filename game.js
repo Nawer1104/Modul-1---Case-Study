@@ -154,6 +154,30 @@ function getRandomColor() {
     return "rgb(" + red + "," + blue + "," + green + ")";
 }
 
+function spawnBoss() {
+    setInterval(() => {
+        let radius = Math.random() * 1000
+        let x = canvas.width + radius
+        let y = canvas.height / 2
+        let color = getRandomColor()
+
+        let angle = Math.atan2(
+            player.y - y,
+            player.x - x
+        )
+
+        let velocity = {
+            x: Math.cos(angle) * 10,
+            y: Math.sin(angle) * 10
+        }
+
+        let enemy = new Enemy(x, y, radius, color, velocity)
+
+        enemies.push(enemy)
+
+    }, 30000)
+}
+
 function spawnEnemies() {
     setInterval(() => {
         let radius = Math.random() * 30 + 10
@@ -360,6 +384,7 @@ startG.addEventListener('click', (event) => {
     restart()
     animate()
     spawnEnemies()
+    spawnBoss()
     optionAl.style.display = 'none'
     audio.play()
     audio.loop = true;
